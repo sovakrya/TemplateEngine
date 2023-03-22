@@ -4,27 +4,21 @@ function copy(el, n) {
 }
 
 function remove(el, n) {
-  let sibling = el.nextElementSibling;
-
   for (n; n > 0; n--) {
-    if (!sibling) return;
+    if (!el.nextElementSibling) return;
 
-    let nextSibling = sibling.nextElementSibling;
-
-    sibling.remove();
-
-    sibling = nextSibling;
+    el.nextElementSibling.remove();
   }
 }
 
 function removeChildren(el, n) {
   if (!el.parentNode) return;
 
-  const children = [...el.children];
+  for (n; n > 0; n--) {
+    if (!el.firstElementChild) return;
 
-  children.splice(0, n);
-
-  el.replaceChildren(...children);
+    el.firstElementChild.remove();
+  }
 }
 
 function switchEl(el, n) {
