@@ -46,14 +46,14 @@ export class PriorityQueue {
   }
 
   #heapifyDown(idx) {
-    if (idx === this.#queue.length - 1) return;
+    const leftChildIdx = this.#getLeftChildIdx(idx);
+    const leftChild = this.#queue.at(leftChildIdx);
+    if (!leftChild) return;
 
     const parent = this.#queue.at(idx);
     let childIdx;
 
-    const leftChildIdx = this.#getLeftChildIdx(idx);
     const rightChildIdx = this.#getRightChildIdx(idx);
-    const leftChild = this.#queue.at(leftChildIdx);
     const rightChild = this.#queue.at(rightChildIdx);
 
     if (!rightChild) {
